@@ -3,6 +3,7 @@
 // [3.5, 7.1, 22.9, 2.3, 78.5] -> 76.2
 
 
+
 // Console.WriteLine("Введите размерность массива");
 // int N = Convert.ToInt32(Console.ReadLine());
 
