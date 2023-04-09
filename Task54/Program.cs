@@ -8,69 +8,51 @@
 // 9 5 3 2
 // 8 4 4 2
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+int[,] table = new int[3, 4];
+FillArrayRandom(table);
+PrintArray(table);
+SortToLower(table);
+Console.WriteLine();
+PrintArray(table);
 
-namespace ConsoleApp14
+void FillArrayRandom(int[,] array)
 {
-    class Program
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        static void sort_(int[,] array)
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int i = 0; i < array.GetLength(0); i++)
+            array[i, j] = new Random().Next(1, 10);
+        }
+    }
+}
+
+void SortToLower(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(1) - 1; k++)
             {
-                for (int j = 0; j < array.GetLength(1); j++)
+                if (array[i, k] < array[i, k + 1])
                 {
-                    for (int k = 0; k < array.GetLength(1) - 1; k++)
-                    {
-                        if (array[i, k] < array[i, k + 1])
-                        {
-                            int temp = array[i, k + 1];
-                            array[i, k + 1] = array[i, k];
-                            array[i, k] = temp;
-                        }
-                    }
+                    int temp = array[i, k + 1];
+                    array[i, k + 1] = array[i, k];
+                    array[i, k] = temp;
                 }
             }
         }
+    }
+}
 
-        static void Main()
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.WriteLine("Введите m: ");
-            int m = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите n: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-
-
-            int[,] a = new int[m, n];
-            Random random = new Random();
-
-            for (int i = 0; i < m; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    a[i, j] = random.Next(0, 9);
-                    Console.Write(a[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-
-            sort_(a);
-            Console.WriteLine("Массив после преобразования: ");
-
-            for (int i = 0; i < m; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write(a[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-
-            Console.ReadLine();
+            Console.Write($"{array[i, j]} ");
         }
+        Console.WriteLine();
     }
 }
